@@ -1,0 +1,73 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- Copyright (C) 2026 Vaibhav Agarwal -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ piece.title }} | Classical Composer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="room-{{ piece.room }}">
+    <header class="header">
+        <h1>{{ piece.title }}</h1>
+        <p class="subtitle">{{ piece.era_name }}</p>
+    </header>
+
+    <main class="container">
+        <a href="/" class="btn btn-secondary">← Back to All Pieces</a>
+        
+        <article class="piece-card {{ piece.era }}" style="margin-top: 2rem;">
+            <span class="era-badge">{{ piece.era_name }}</span>
+            <h2>{{ piece.title }}</h2>
+            <p class="inspiration">Inspired by: {{ piece.inspiration }}</p>
+            
+            <div class="piece-details">
+                <div class="detail-row">
+                    <span class="label">Tempo:</span>
+                    <span>{{ piece.tempo }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Key:</span>
+                    <span>{{ piece.key }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Form:</span>
+                    <span>{{ piece.form }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Duration:</span>
+                    <span>{{ piece.duration }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Instruments:</span>
+                    <span>{{ piece.instruments }}</span>
+                </div>
+            </div>
+            
+            <p class="description">{{ piece.description }}</p>
+            
+            <div class="actions">
+                <button class="btn btn-play" onclick="generatePiece('{{ piece_id }}')">▶ Generate & Play</button>
+                <a href="/" class="btn btn-secondary">← Back</a>
+            </div>
+        </article>
+
+        <div class="player-section">
+            <h3>🎵 Player</h3>
+            <audio id="audio-player" class="audio-player" controls>
+                Your browser does not support audio playback.
+            </audio>
+            <canvas id="visualizer" class="visualizer"></canvas>
+            <p id="player-status">Click "Generate & Play" to compose this piece</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>"Music is the mediator between the spiritual and the sensual life." — Ludwig van Beethoven</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
